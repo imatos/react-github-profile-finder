@@ -1,0 +1,32 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #d2d2d2;
+  padding: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  text-decoration: none;
+  color: black;
+  margin: 0 12px;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card .card-img {
+  max-height: 100px;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
+.card .user-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
