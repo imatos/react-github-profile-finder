@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 120px;
+  width: 160px;
   border-radius: 5px;
   background-color: #fff;
   border: 1px solid #d2d2d2;
@@ -11,7 +11,7 @@
   transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
   text-decoration: none;
   color: black;
-  margin: 0 12px;
+  margin: 12px 12px;
 }
 
 .card:hover {
@@ -20,7 +20,7 @@
 }
 
 .card .card-img {
-  max-height: 100px;
+  max-height: 130px;
   border-radius: 50%;
   margin-bottom: 8px;
 }
