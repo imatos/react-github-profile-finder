@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchForm from '../shared/searchForm/SearchForm';
 import './Navbar.css';
 
 const Navbar = ({ title, icon }) => {
@@ -11,13 +12,7 @@ const Navbar = ({ title, icon }) => {
         ></i>
         {title}
       </span>
-      <div className="searchBox">
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Search Github profile..."
-        />
-      </div>
+      <SearchForm />
     </div>
   );
 };

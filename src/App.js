@@ -1,22 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
-import Spinner from './components/shared/Spinner';
+import Spinner from './components/shared/spinner/Spinner';
 
 import './App.css';
+import { SearchContext } from './Context/useSearchContext';
 
 const App = () => {
+  const { searchParam } = useContext(SearchContext);
+
   const [users, setUsers] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://api.github.com/users')
+    setError(null);
+    const githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
+    const githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
+    const githubQueryParams = `?client_id=${githubClientId}&client_secret=${githubClientSecret}`;
+
+    const baseURL = 'https://api.github.com/users';
+    const url = searchParam !== '' ? `${baseURL}/${searchParam}` : baseURL;
+    fetch(`${url}${githubQueryParams}`)
       .then((res) => res.json())
       .then((data) => {
         setIsLoaded(true);
-        setUsers(data);
+        if (!Array.isArray(data)) {
+          setUsers([data]);
+        } else {
+          setUsers(data);
+        }
+      })
+      .catch((error) => {
+        setError(error);
       });
-  }, []);
+  }, [searchParam]);
 
   return (
     <>
@@ -24,6 +42,8 @@ const App = () => {
       <div className="container">
         {isLoaded ? <Users users={users} /> : <Spinner />}
       </div>
+
+      {error ? JSON.stringify(error) : ''}
     </>
   );
 };

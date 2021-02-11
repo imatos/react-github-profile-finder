@@ -12,24 +12,3 @@
   font-size: 22px;
   font-weight: bold;
 }
-
-.navbar-container .search-input {
-  padding: 8px 12px;
-  min-width: 50%;
-  border-radius: 5px;
-  border: 1px solid #c8c6c6;
-  font-size: 16px;
-}
-
-.navbar-container .searchBox {
-  flex-grow: 1;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.navbar-container .searchBox .search-input:focus {
-  background-color: #fff;
-  border-color: #acb6e5;
-  outline: 0;
-  box-shadow: 0 0 0 0.1rem #acb6e5;
-}

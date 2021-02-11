@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
 import reportWebVitals from './reportWebVitals';
+
+import App from './App';
+import './index.css';
+import { SearchProvider } from './Context/useSearchContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SearchProvider>
+      <App />
+    </SearchProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
