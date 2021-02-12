@@ -15,18 +15,28 @@ const App = () => {
 
   useEffect(() => {
     setError(null);
+    setIsLoaded(false);
+
     const githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
     const githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
-    const githubQueryParams = `?client_id=${githubClientId}&client_secret=${githubClientSecret}`;
+    const githubKeys = `client_id=${githubClientId}&client_secret=${githubClientSecret}`;
 
-    const baseURL = 'https://api.github.com/users';
-    const url = searchParam !== '' ? `${baseURL}/${searchParam}` : baseURL;
-    fetch(`${url}${githubQueryParams}`)
+    let resource = '';
+    let filtered = false;
+    if (searchParam !== '') {
+      resource = `search/users?q=${searchParam}&${githubKeys}`;
+      filtered = true;
+    } else {
+      resource = `users?${githubKeys}`;
+      filtered = false;
+    }
+
+    fetch(`https://api.github.com/${resource}`)
       .then((res) => res.json())
       .then((data) => {
         setIsLoaded(true);
-        if (!Array.isArray(data)) {
-          setUsers([data]);
+        if (filtered) {
+          setUsers(data.items);
         } else {
           setUsers(data);
         }

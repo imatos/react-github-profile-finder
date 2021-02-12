@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { SearchContext } from '../../../Context/useSearchContext';
 import './SearchForm.css';
 
 const SearchForm = () => {
+  const inputRef = useRef(null);
   const [term, setTerm] = useState('');
   const { setSearchParam } = useContext(SearchContext);
 
@@ -18,12 +19,14 @@ const SearchForm = () => {
   const resethandler = () => {
     setTerm('');
     setSearchParam('');
+    inputRef.current.focus();
   };
 
   return (
     <form autoComplete="off" className="search-form" onSubmit={submitHandler}>
       <div className="input-container">
         <input
+          ref={inputRef}
           name="searchParam"
           className="search-input"
           type="text"
@@ -31,9 +34,12 @@ const SearchForm = () => {
           onChange={searchUserHandler}
           placeholder="Search user..."
         />
-        <button className="reset-button" type="button" onClick={resethandler}>
-          X
-        </button>
+
+        {term && (
+          <button className="reset-button" type="button" onClick={resethandler}>
+            X
+          </button>
+        )}
       </div>
       <button className="search-button" type="submit">
         Search
