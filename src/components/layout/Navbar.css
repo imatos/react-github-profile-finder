@@ -12,3 +12,24 @@
   font-size: 22px;
   font-weight: bold;
 }
+
+.navbar {
+  display: flex;
+  list-style: none;
+}
+
+.navbar-link {
+  margin-right: 8px;
+  padding: 0 8px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.custom-link {
+  text-decoration: none;
+  color: #000;
+}
+
+.custom-link:hover {
+  color: #525150;
+}

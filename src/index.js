@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 
 import App from './App';
 import './index.css';
-import { SearchProvider } from './Context/useSearchContext';
+import { SearchProvider } from './Context/searchContext';
 
 ReactDOM.render(
   <React.StrictMode>

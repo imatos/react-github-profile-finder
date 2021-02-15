@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from 'react';
-import { SearchContext } from '../../../Context/useSearchContext';
+import { SearchContext } from '../../../Context/searchContext';
 import './SearchForm.css';
 
 const SearchForm = () => {

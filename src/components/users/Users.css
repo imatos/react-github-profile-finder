@@ -1,0 +1,11 @@
+.user-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-content .users-preview-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

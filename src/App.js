@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import { SearchContext } from './Context/searchContext';
+
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
-import Spinner from './components/shared/spinner/Spinner';
+import About from './About/About';
+
 import './App.css';
-import { SearchContext } from './Context/useSearchContext';
-import About from './About';
 
 const App = () => {
   const { searchParam } = useContext(SearchContext);
@@ -55,7 +57,7 @@ const App = () => {
           <Route
             exact
             path="/"
-            render={() => (isLoaded ? <Users users={users} /> : <Spinner />)}
+            render={() => <Users users={users} isLoaded={isLoaded} />}
           />
           <Route exact path="/about" render={About} />
         </Switch>
