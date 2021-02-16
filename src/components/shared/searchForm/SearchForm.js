@@ -1,11 +1,11 @@
 import React, { useContext, useState, useRef } from 'react';
-import { SearchContext } from '../../../Context/searchContext';
+import { SearchContext } from '../../../context/searchContext';
 import './SearchForm.css';
 
 const SearchForm = () => {
+  const { searchParam, setSearchParam } = useContext(SearchContext);
   const inputRef = useRef(null);
-  const [term, setTerm] = useState('');
-  const { setSearchParam } = useContext(SearchContext);
+  const [term, setTerm] = useState(searchParam);
 
   const searchUserHandler = (event) => {
     setTerm(event.target.value);

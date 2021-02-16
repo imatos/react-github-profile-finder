@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { SearchContext } from './Context/searchContext';
-import { useGithubUsers } from './Hooks/useGithubUsers';
+import { SearchContext } from './context/searchContext';
+import { useGithubUsers } from './hooks/useGithubUsers';
 
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
@@ -25,7 +25,11 @@ const App = () => {
             path="/"
             render={() => <Users users={users} isLoaded={isLoaded} />}
           />
-          <Route exact path="/user/:login" render={() => <UserProfile />} />
+          <Route
+            exact
+            path="/user/:login"
+            render={(props) => <UserProfile {...props} />}
+          />
           <Route exact path="/about" render={About} />
         </Switch>
       </div>

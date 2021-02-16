@@ -1,14 +1,12 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useGithubUserProfile } from '../../Hooks/useGithubUserProfile';
+import { useGithubUserProfile } from '../../hooks/useGithubUserProfile';
 import Spinner from '../shared/spinner/Spinner';
 import './UserProfile.css';
-
 import { Link } from 'react-router-dom';
 
-const UserProfile = () => {
-  const { login } = useParams();
-  const { user, isLoaded } = useGithubUserProfile(login);
+const UserProfile = ({ match }) => {
+  const { user, isLoaded } = useGithubUserProfile(match.params.login);
+
   return isLoaded ? (
     <div className="flex justify-content-center">
       <div className="profile-container">
@@ -64,6 +62,9 @@ const UserProfile = () => {
           <a className="btn btn-dark mt" href={user.html_url} target="_blank">
             Go to Github Page
           </a>
+          <Link to="/" className="btn mt">
+            Back
+          </Link>
         </div>
       </div>
     </div>
