@@ -1,53 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { SearchContext } from './Context/searchContext';
+import { useGithubUsers } from './Hooks/useGithubUsers';
 
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
-import About from './About/About';
+import UserProfile from './components/users/UserProfile';
+import About from './about/About';
 
 import './App.css';
 
 const App = () => {
   const { searchParam } = useContext(SearchContext);
-
-  const [users, setUsers] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setError(null);
-    setIsLoaded(false);
-
-    const githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
-    const githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
-    const githubKeys = `client_id=${githubClientId}&client_secret=${githubClientSecret}`;
-
-    let resource = '';
-    let filtered = false;
-    if (searchParam !== '') {
-      resource = `search/users?q=${searchParam}&${githubKeys}`;
-      filtered = true;
-    } else {
-      resource = `users?${githubKeys}`;
-      filtered = false;
-    }
-
-    fetch(`https://api.github.com/${resource}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setIsLoaded(true);
-        if (filtered) {
-          setUsers(data.items);
-        } else {
-          setUsers(data);
-        }
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }, [searchParam]);
+  const { users, isLoaded, error } = useGithubUsers(searchParam);
 
   return (
     <Router>
@@ -59,6 +25,7 @@ const App = () => {
             path="/"
             render={() => <Users users={users} isLoaded={isLoaded} />}
           />
+          <Route exact path="/user/:login" render={() => <UserProfile />} />
           <Route exact path="/about" render={About} />
         </Switch>
       </div>

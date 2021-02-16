@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import './index.css';
 import { SearchProvider } from './Context/searchContext';
+import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
 
 ReactDOM.render(
   <React.StrictMode>

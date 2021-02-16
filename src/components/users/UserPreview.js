@@ -1,12 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './UserPreview.css';
 
 const UserPreview = ({ user }) => {
   return (
-    <a target="_blank" href={user.html_url} className="card floating-effect">
+    <Link to={`/user/${user.login}`} className="card floating-effect">
       <img className="card-img" src={user.avatar_url} alt={user.login} />
       <span className="user-name">{user.login}</span>
-    </a>
+    </Link>
   );
 };
 
