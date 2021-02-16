@@ -20,13 +20,13 @@ const UserProfile = ({ match }) => {
             className="flex justify-content-center"
             style={{ margin: '12px' }}
           >
-            <span className="badge primary">{user.followers} followers</span>
-            <span className="badge secondary">
-              Following {user.following} users
-            </span>
+            <span className="badge primary">followers: {user.followers}</span>
+            <span className="badge secondary">Following: {user.following}</span>
 
-            <span className="badge dark">{user.public_repos} Repositories</span>
-            <span className="badge success">{user.public_gists} Gists</span>
+            <span className="badge dark">
+              Repositories: {user.public_repos}
+            </span>
+            <span className="badge success">Gists: {user.public_gists}</span>
           </div>
 
           {user.company && (

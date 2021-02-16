@@ -15,8 +15,15 @@ a:hover {
   display: flex;
 }
 
+.flex.flex-column {
+  flex-direction: column;
+}
+
 .flex.justify-content-center {
   justify-content: center;
+}
+.flex.align-items-center {
+  align-items: center;
 }
 
 .flex.justify-content-space-between {

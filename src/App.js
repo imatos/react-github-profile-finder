@@ -8,12 +8,13 @@ import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
 import UserProfile from './components/users/UserProfile';
 import About from './about/About';
+import NotFound from './NotFound';
 
 import './App.css';
 
 const App = () => {
   const { searchParam } = useContext(SearchContext);
-  const { users, isLoaded, error } = useGithubUsers(searchParam);
+  const { users, isLoaded } = useGithubUsers(searchParam);
 
   return (
     <Router>
@@ -25,12 +26,9 @@ const App = () => {
             path="/"
             render={() => <Users users={users} isLoaded={isLoaded} />}
           />
-          <Route
-            exact
-            path="/user/:login"
-            render={(props) => <UserProfile {...props} />}
-          />
-          <Route exact path="/about" render={About} />
+          <Route exact path="/user/:login" component={UserProfile} />
+          <Route exact path="/about" component={About} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>
